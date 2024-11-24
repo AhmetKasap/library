@@ -48,7 +48,6 @@ const getUserById = async (req, res) => {
         ],
     });
 
-    console.log("test", user.Borroweds.length === 0)
 
     if (!user) throw new APIError("user not found", 404)
 
@@ -63,8 +62,9 @@ const getUserById = async (req, res) => {
     if(user.Borroweds.length === 0) return new Response(response, "").ok(res)
 
 
-    const pastBooks = user.Borrowed.filter((borrowed) => borrowed.returned_at !== null)
-    const presentBooks = user.Borrowed.filter((borrowed) => borrowed.returned_at === null)
+
+    const pastBooks = user.Borroweds.filter((borrowed) => borrowed.returned_at !== null)
+    const presentBooks = user.Borroweds.filter((borrowed) => borrowed.returned_at === null)
 
     response.books.past =  pastBooks.map((borrowed) => ({
         name: borrowed.Book.name,
