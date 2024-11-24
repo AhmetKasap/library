@@ -1,4 +1,5 @@
 import User from "../models/user.model.js"
+import Response from "../utils/Response.js"
 
 
 const getAllUsers = async(req,res) => {
@@ -13,8 +14,7 @@ const createUser = async(req,res) => {
     const name = req.body.name
 
     const createdUser = await User.create({name})
-    console.log(createdUser)
-
+    if(createUser) return new Response(null, "kayıt başarılı").created(res)
 }
 
 
