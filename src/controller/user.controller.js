@@ -1,4 +1,5 @@
 import User from "../models/user.model.js"
+import APIError from "../utils/Error.js"
 import Response from "../utils/Response.js"
 
 
@@ -10,11 +11,17 @@ const getUserById = async(req,res) => {
 
 }
 
-const createUser = async(req,res) => {
+const createUser = async(req,res, next) => {
     const name = req.body.name
+    const createdUser = await User.create({ name });
 
-    const createdUser = await User.create({name})
-    if(createUser) return new Response(null, "kayıt başarılı").created(res)
+    if (createdUser) {
+        return new Response(null, "Kayıt başarılı").created(res);
+      } else {
+        throw new APIError("User creation failed", 500)
+      }
+
+   
 }
 
 

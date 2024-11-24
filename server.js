@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import express from 'express'
 import 'dotenv/config'
 const app = express()
@@ -15,6 +16,13 @@ connectDB()
 import indexRouter from './src/routes/index.routes.js'
 app.use(`/${process.env.API_NAME}/${process.env.API_VERSION}`, indexRouter)
 
+app.use((req,res, next) => {
+  res.send('not found url')
+  next()
+})
+
+import errorHandler from './src/middlewares/error.handler.js'
+app.use(errorHandler)
 
 
 const PORT = process.env.PORT || 5001
