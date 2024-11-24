@@ -6,7 +6,9 @@ const app = express()
 
 
 
-
+//! POSTGRESQL CONNECTION
+import {connectDB} from './src/config/db.connection.js'
+connectDB()
 
 
 
