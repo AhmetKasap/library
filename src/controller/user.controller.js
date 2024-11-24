@@ -8,12 +8,8 @@ const getAllUsers = async(req,res) => {
         attributes: ['id', 'name'] 
     })
 
-    if(allUsers.length === 0) return new Response(null, "no users added yet").ok(res)
-    else return new Response(null, "all users listed").ok(res)
-
-}
-
-const getUserById = async(req,res) => {
+    if(allUsers.length === 0) return new Response(allUsers, "no users added yet").ok(res)
+    else return new Response(allUsers, "all users listed").ok(res)
 
 }
 
@@ -31,6 +27,10 @@ const createUser = async(req,res, next) => {
     if(savedUser) return new Response(null, 'registration successful').created(res)
     else throw new APIError("User creation failed", 500)
   
+}
+
+const getUserById = async(req,res) => {
+
 }
 
 
