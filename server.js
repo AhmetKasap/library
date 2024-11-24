@@ -3,8 +3,6 @@ import express from 'express'
 import 'dotenv/config'
 const app = express()
 
-
-
 //! Body Parser
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
@@ -13,7 +11,6 @@ app.use(express.urlencoded({extended : true}))
 import corsOptions from './src/config/cors.options.js';
 import cors from 'cors'
 app.use(cors(corsOptions))
-
 
 //! POSTGRESQL CONNECTION
 import {connectDB} from './src/config/db.connection.js'
