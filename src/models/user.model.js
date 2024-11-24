@@ -23,10 +23,7 @@ const User = sequelize.define('User', {
     },
   },
 
-  created_at: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
+
 })
 
 export default User

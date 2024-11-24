@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../config/db.connection';
+import { sequelize } from '../config/db.connection.js';
 
 const Book = sequelize.define('Book', {
   id: {
@@ -7,7 +7,7 @@ const Book = sequelize.define('Book', {
     primaryKey: true,
     autoIncrement: true,
   }, 
-  
+
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -28,11 +28,8 @@ const Book = sequelize.define('Book', {
     defaultValue: -1,
   },
 
-  created_at: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
-});
 
-export default Book;
+})
+
+export default Book
 
