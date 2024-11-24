@@ -35,6 +35,31 @@ const borrowing = async (req, res) => {
 
 const giveBack = async (req, res) => {
 
+    const userExists = await User.findByPk(req.params.userId)
+    const bookExists = await Book.findByPk(req.params.bookId)
+
+    if (!userExists) throw new APIError('user not found', 404)
+    if (!bookExists) throw new APIError('book not found', 404)
+
+    const { score } = req.body
+
+    const borrowed = await Borrowed.findOne({
+        where: {
+            user_id: req.params.userId,
+            book_id: req.params.bookId,
+            returned_at: null,
+        },
+    })
+
+    if(!borrowed) throw new APIError('borrew not found', 404)
+
+    borrowed.returned_at = new Date()
+    borrowed.user_score = score
+
+    await borrowed.save()
+    return new Response(borrowed, '').ok(res)
+
+
 }
 
 
