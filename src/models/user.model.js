@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../config/db.connection';
+import { sequelize } from '../config/db.connection.js';
 
 const User = sequelize.define('User', {
   id: {
@@ -19,7 +19,6 @@ const User = sequelize.define('User', {
         args: [3, 50],
         msg: 'Name must be between 3 and 50 characters',
       },
-      trim : true
     },
   },
 
